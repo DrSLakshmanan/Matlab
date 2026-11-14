@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATLAB Programming — Colour Theme Study Material</title>
+<style>
+:root{--bg:#fff8e7;--panel:#fffdf5;--card:#eaf7ff;--line:#f0b429;--text:#20323f;--muted:#5d7180;--accent:#f97316;--accent2:#0ea5e9;--ok:#22c55e;--bad:#ef4444}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Segoe UI,Roboto,Arial,sans-serif;line-height:1.65}
+header{padding:38px 20px;background:linear-gradient(120deg,#ff9f1c 0%,#ffd166 22%,#8ee36b 46%,#38bdf8 72%,#0ea5e9 100%);border-bottom:4px solid #f97316;box-shadow:0 6px 24px rgba(249,115,22,.25)}
+h1{margin:0 0 8px;font-size:clamp(26px,4vw,40px);color:#20323f;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.sub{color:#28455a;max-width:1000px;font-weight:500}
+main{max-width:1150px;margin:0 auto;padding:18px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 24px}
+nav a{background:#eaf7ff;color:#20323f;padding:9px 13px;border-radius:999px;text-decoration:none;border:2px solid #f0b429;font-size:14px;font-weight:600}
+nav a:hover{border-color:#f97316;color:#f97316}
+section{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:22px;margin-bottom:24px;box-shadow:0 4px 16px rgba(15,118,110,.08)}
+h2{margin:0 0 8px;color:#f97316}
+h3{margin:20px 0 8px;color:#0ea5e9}
+h4{margin:14px 0 6px;color:#16a34a}
+p{margin:8px 0}
+ul,ol{margin:8px 0 8px 22px}
+li{margin:5px 0}
+code,pre{font-family:Consolas,Menlo,monospace}
+pre{background:#fffdf5;border:2px solid #f0b429;border-radius:10px;padding:12px;overflow:auto;color:#20323f;font-size:14px}
+.inline{background:#eaf7ff;border:1px solid #f0b429;border-radius:6px;padding:1px 6px;color:#0ea5e9;font-weight:600}
+.note{border-left:6px solid #f97316;background:#fff4d6;padding:10px 12px;border-radius:8px;margin:10px 0}
+.practical{border-left:6px solid #22c55e;background:#eafaf1;padding:10px 12px;border-radius:8px;margin:10px 0}
+.viva{border-left:6px solid #0ea5e9;background:#eaf7ff;padding:10px 12px;border-radius:8px;margin:10px 0}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+th,td{border:1px solid #f0b429;padding:8px;text-align:left;vertical-align:top}
+th{background:#ffe9b8;color:#20323f}
+tr:nth-child(even) td{background:#fffdf5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.card{background:#eaf7ff;border:2px solid #f0b429;border-radius:10px;padding:12px}
+.lab{background:#fff4d6;border:2px solid #f0b429;border-radius:12px;padding:14px;margin:12px 0}
+.lab label{display:block;font-size:13px;color:#5d7180;margin:8px 0 4px;font-weight:600}
+input,select,textarea{background:#fffdf5;color:#20323f;border:2px solid #f0b429;border-radius:8px;padding:8px;width:100%;font-family:Consolas,monospace}
+button{background:linear-gradient(90deg,#f97316,#ffd166);border:0;color:#20323f;font-weight:800;padding:8px 13px;border-radius:8px;cursor:pointer;margin:4px 4px 0 0;box-shadow:0 2px 6px rgba(249,115,22,.25)}
+button.secondary{background:linear-gradient(90deg,#38bdf8,#8ee36b);color:#083344}
+button:hover{filter:brightness(1.06)}
+.output{background:#fffdf5;border:2px solid #22c55e;border-radius:8px;padding:10px;min-height:44px;white-space:pre-wrap;font-family:Consolas,monospace;color:#0f766e;margin-top:8px;font-weight:600}
+.canvasbox{background:#fffdf5;border:2px solid #f0b429;border-radius:10px;padding:8px;margin-top:10px}
+canvas{width:100%;height:auto;display:block}
+.quiz{background:#eafaf1;border:2px solid #22c55e;border-radius:10px;padding:12px;margin:10px 0}
+.quiz button{background:#eaf7ff;color:#20323f;border:2px solid #f0b429}
+.quiz button.correct{background:#22c55e;color:#fff}
+.quiz button.wrong{background:#ef4444;color:#fff}
+.quiz .feedback{margin-top:8px;font-weight:800}
+footer{color:#5d7180;text-align:center;padding:22px;background:linear-gradient(90deg,#ffd166,#8ee36b,#38bdf8)}
+.badge{display:inline-block;background:#fff4d6;color:#b45309;border:2px solid #f0b429;padding:2px 9px;border-radius:999px;font-size:12px;margin-left:6px;font-weight:700}
+details{background:#fff4d6;border:2px solid #f0b429;border-radius:10px;padding:10px 12px;margin:10px 0}
+summary{cursor:pointer;font-weight:800;color:#0ea5e9}
+</style>
+</head>
+<body>
+<header>
+<h1>MATLAB Programming — Complete Interactive Study Material</h1>
+<div class="sub">Detailed learning material for MATLAB environment, programming, arrays and matrices, graphics, numerical analysis, and Simulink. Includes theory, syntax, solved programs, simulated outputs, interactive visualizations, practical exercises, viva questions, assignments, and quizzes.</div>
+</header>
+
+<main>
+<nav>
+<a href="#m1">1. Introduction</a><a href="#m2">2. Programming</a><a href="#m3">3. Arrays &amp; Matrices</a><a href="#m4">4. Graphics</a><a href="#m5">5. Numerical Analysis &amp; Simulink</a>
+</nav>
+
+<section id="m1">
+<h2>Module 1: Introduction <span class="badge">6Hrs + 3Hrs | CO-1 | BTL-2</span></h2>
+<p>MATLAB stands for <strong>MATrix LABoratory</strong>. It is a high-level programming language and interactive environment developed for numerical computation, data analysis, algorithm development, visualization, and simulation. MATLAB is widely used in engineering, mathematics, physics, finance, machine learning, control systems, signal processing, and image processing.</p>
+<p>The most important feature of MATLAB is that it treats data as matrices and arrays. Even a single number is considered a \(1 \times 1\) matrix. This makes MATLAB particularly suitable for solving linear algebra problems, performing numerical calculations, and working with large sets of data.</p>
+
+<h3>Features of MATLAB</h3>
+<ul>
+<li><strong>Easy to learn:</strong> MATLAB uses simple English-like commands and mathematical notation.</li>
+<li><strong>Powerful mathematical tools:</strong> It provides built-in functions for algebra, calculus, statistics, linear algebra, and numerical methods.</li>
+<li><strong>Excellent visualization:</strong> MATLAB can create 2D plots, 3D surfaces, histograms, bar charts, pie charts, and animations.</li>
+<li><strong>Matrix-based computation:</strong> Matrix and vector operations can be performed directly without writing long loops.</li>
+<li><strong>Programming support:</strong> MATLAB supports variables, conditional statements, loops, functions, and file handling.</li>
+<li><strong>Toolboxes:</strong> Specialized toolboxes are available for signal processing, control systems, image processing, machine learning, and communications.</li>
+<li><strong>Simulink support:</strong> Simulink allows graphical modelling and simulation of dynamic systems.</li>
+</ul>
+
+<h3>MATLAB environment</h3>
+<p>When MATLAB starts, it displays several main windows. Understanding these windows is essential for working efficiently.</p>
+<div class="grid">
+<div class="card"><strong>Command Window</strong><br>This is the main area where MATLAB commands are typed after the prompt <code>&gt;&gt;</code>. The result of a command is displayed immediately.</div>
+<div class="card"><strong>Workspace</strong><br>Shows all variables currently stored in memory. It displays variable name, value, size, bytes used, and class.</div>
+<div class="card"><strong>Current Folder</strong><br>Displays files and folders in the current working directory. MATLAB searches for script and function files here.</div>
+<div class="card"><strong>Command History</strong><br>Keeps a record of commands entered earlier. A command can be reused by double-clicking it.</div>
+<div class="card"><strong>Editor</strong><br>Used to create, edit, save, debug, and run MATLAB program files with the extension <code>.m</code>.</div>
+<div class="card"><strong>Figure Window</strong><br>Displays graphs, plots, images, and visual results created by MATLAB.</div>
+<div class="card"><strong>Help Browser</strong><br>Provides detailed documentation, examples, and search facilities for MATLAB functions.</div>
+<div class="card"><strong>Details Panel</strong><br>Shows additional information about selected files or variables.</div>
+</div>
+
+<h4>Menus and submenus</h4>
+<table>
+<tr><th>Menu</th><th>Main purpose</th><th>Important options</th></tr>
+<tr><td><strong>Home</strong></td><td>Basic MATLAB operations</td><td>New Script, Open, Save, Clear Commands, Preferences</td></tr>
+<tr><td><strong>Plots</strong></td><td>Creates visualizations from workspace variables</td><td>plot, bar, pie, histogram, surf, mesh</td></tr>
+<tr><td><strong>Apps</strong></td><td>Provides ready-made MATLAB applications</td><td>Curve Fitting, Image Processing, Signal Analyzer</td></tr>
+<tr><td><strong>Editor</strong></td><td>Creates and edits MATLAB programs</td><td>Run, Save, Debug, Breakpoints, Publish</td></tr>
+<tr><td><strong>View</strong></td><td>Controls visible windows</td><td>Command Window, Workspace, Current Folder, Command History</td></tr>
+</table>
+
+<h4>Example: Using the Command Window</h4>
+<pre>&gt;&gt; 5 + 3
+ans =
+     8
+
+&gt;&gt; x = 10;
+&gt;&gt; y = 4;
+&gt;&gt; x * y
+ans =
+    40
+
+&gt;&gt; x / y
+ans =
+    2.5000</pre>
+<div class="note">The variable <code>ans</code> is automatically created when an expression produces a result that is not assigned to a named variable. A semicolon at the end of a command suppresses the display of output.</div>
+
+<h3>Arithmetic operations</h3>
+<p>MATLAB supports standard arithmetic operations. The order of operations is: brackets first, then powers, then multiplication and division, and finally addition and subtraction.</p>
+<table>
+<tr><th>Operation</th><th>Operator</th><th>Example</th><th>Result</th></tr>
+<tr><td>Addition</td><td><code>+</code></td><td><code>8 + 3</code></td><td><code>11</code></td></tr>
+<tr><td>Subtraction</td><td><code>-</code></td><td><code>8 - 3</code></td><td><code>5</code></td></tr>
+<tr><td>Multiplication</td><td><code>*</code></td><td><code>8 * 3</code></td><td><code>24</code></td></tr>
+<tr><td>Division</td><td><code>/</code></td><td><code>8 / 3</code></td><td><code>2.6667</code></td></tr>
+<tr><td>Left division</td><td><code>\</code></td><td><code>8 \ 3</code></td><td><code>0.3750</code></td></tr>
+<tr><td>Power</td><td><code>^</code></td><td><code>2 ^ 6</code></td><td><code>64</code></td></tr>
+</table>
+
+<h4>Operator precedence</h4>
+<ol>
+<li>Parentheses <code>()</code></li>
+<li>Power <code>^</code></li>
+<li>Unary minus, for example <code>-5</code></li>
+<li>Multiplication and division <code>*</code>, <code>/</code>, <code>\</code></li>
+<li>Addition and subtraction <code>+</code>, <code>-</code></li>
+</ol>
+
+<pre>&gt;&gt; 2 + 3 * 4
+ans =
+    14
+
+&gt;&gt; (2 + 3) * 4
+ans =
+    20
+
+&gt;&gt; 2 ^ 3 ^ 2
+ans =
+   512
+
+&gt;&gt; -3^2
+ans =
+    -9
+
+&gt;&gt; (-3)^2
+ans =
+     9</pre>
+
+<div class="lab">
+<h4>Interactive scalar calculator</h4>
+<label>Enter a MATLAB arithmetic expression</label>
+<input id="calcInput" value="(12 + 8) / 4 + 2^3">
+<button onclick="runCalc()">Evaluate</button>
+<button class="secondary" onclick="document.getElementById('calcInput').value='sqrt(144) + 10/4'; runCalc()">Try sqrt example</button>
+<button class="secondary" onclick="document.getElementById('calcInput').value='2^10 - 100/4'; runCalc()">Try power example</button>
+<div class="output" id="calcOutput">Click Evaluate to see the MATLAB-style result.</div>
+</div>
+
+<h3>Display formats</h3>
+<p>The <code>format</code> command controls how numbers appear in the Command Window. It changes only the display; it does not change the accuracy of MATLAB calculations.</p>
+<pre>&gt;&gt; format short
+&gt;&gt; pi
+ans =
+    3.1416
+
+&gt;&gt; format long
+&gt;&gt; pi
+ans =
+   3.141592653589793
+
+&gt;&gt; format bank
+&gt;&gt; 10/3
+ans =
+          3.33
+
+&gt;&gt; format short e
+&gt;&gt; 25000
+ans =
+   2.5000e+04</pre>
+<table>
+<tr><th>Command</th><th>Display style</th><th>Example</th></tr>
+<tr><td><code>format short</code></td><td>4 decimal places</td><td><code>3.1416</code></td></tr>
+<tr><td><code>format long</code></td><td>15 decimal places</td><td><code>3.141592653589793</code></td></tr>
+<tr><td><code>format bank</code></td><td>2 decimal places</td><td><code>3.33</code></td></tr>
+<tr><td><code>format short e</code></td><td>Scientific notation</td><td><code>2.5000e+04</code></td></tr>
+<tr><td><code>format long e</code></td><td>Scientific notation with more digits</td><td><code>2.500000000000000e+04</code></td></tr>
+<tr><td><code>format short g</code></td><td>Best of fixed or exponential format</td><td><code>25000</code></td></tr>
+<tr><td><code>format rat</code></td><td>Rational approximation</td><td><code>22/7</code></td></tr>
+<tr><td><code>format compact</code></td><td>Removes extra blank lines</td><td><code>format compact</code></td></tr>
+<tr><td><code>format loose</code></td><td>Adds extra blank lines</td><td><code>format loose</code></td></tr>
+</table>
+
+<h3>Elementary mathematical functions</h3>
+<pre>&gt;&gt; sqrt(81)
+ans =
+     9
+
+&gt;&gt; abs(-15)
+ans =
+    15
+
+&gt;&gt; round(7.6)
+ans =
+     8
+
+&gt;&gt; floor(7.9)
+ans =
+     7
+
+&gt;&gt; ceil(7.1)
+ans =
+     8
+
+&gt;&gt; fix(-7.9)
+ans =
+    -7
+
+&gt;&gt; factorial(6)
+ans =
+   720
+
+&gt;&gt; exp(2)
+ans =
+    7.3891
+
+&gt;&gt; log(100)
+ans =
+    4.6052
+
+&gt;&gt; log10(1000)
+ans =
+     3
+
+&gt;&gt; sin(pi/2)
+ans =
+     1</pre>
+<table>
+<tr><th>Function</th><th>Purpose</th><th>Example</th></tr>
+<tr><td><code>sqrt(x)</code></td><td>Square root</td><td><code>sqrt(25)</code> gives <code>5</code></td></tr>
+<tr><td><code>abs(x)</code></td><td>Absolute value</td><td><code>abs(-9)</code> gives <code>9</code></td></tr>
+<tr><td><code>round(x)</code></td><td>Nearest integer</td><td><code>round(4.5)</code> gives <code>5</code></td></tr>
+<tr><td><code>floor(x)</code></td><td>Rounds downward</td><td><code>floor(4.9)</code> gives <code>4</code></td></tr>
+<tr><td><code>ceil(x)</code></td><td>Rounds upward</td><td><code>ceil(4.1)</code> gives <code>5</code></td></tr>
+<tr><td><code>fix(x)</code></td><td>Rounds toward zero</td><td><code>fix(-4.9)</code> gives <code>-4</code></td></tr>
+<tr><td><code>rem(a,b)</code></td><td>Remainder</td><td><code>rem(17,5)</code> gives <code>2</code></td></tr>
+<tr><td><code>mod(a,b)</code></td><td>Modulus</td><td><code>mod(17,5)</code> gives <code>2</code></td></tr>
+<tr><td><code>factorial(n)</code></td><td>Factorial</td><td><code>factorial(5)</code> gives <code>120</code></td></tr>
+<tr><td><code>exp(x)</code></td><td>Exponential</td><td><code>exp(1)</code> gives <code>2.7183</code></td></tr>
+<tr><td><code>log(x)</code></td><td>Natural logarithm</td><td><code>log(e)</code> gives <code>1</code></td></tr>
+<tr><td><code>log10(x)</code></td><td>Base-10 logarithm</td><td><code>log10(100)</code> gives <code>2</code></td></tr>
+<tr><td><code>log2(x)</code></td><td>Base-2 logarithm</td><td><code>log2(8)</code> gives <code>3</code></td></tr>
+<tr><td><code>sin(x)</code></td><td>Sine, radians</td><td><code>sin(pi/2)</code> gives <code>1</code></td></tr>
+<tr><td><code>cos(x)</code></td><td>Cosine, radians</td><td><code>cos(0)</code> gives <code>1</code></td></tr>
+<tr><td><code>tan(x)</code></td><td>Tangent, radians</td><td><code>tan(pi/4)</code> gives <code>1</code></td></tr>
+<tr><td><code>asin(x)</code></td><td>Inverse sine</td><td><code>asin(1)</code> gives <code>1.5708</code></td></tr>
+<tr><td><code>acos(x)</code></td><td>Inverse cosine</td><td><code>acos(1)</code> gives <code>0</code></td></tr>
+<tr><td><code>atan(x)</code></td><td>Inverse tangent</td><td><code>atan(1)</code> gives <code>0.7854</code></td></tr>
+</table>
+
+<h3>Scalar variables</h3>
+<p>A scalar variable stores a single value. Variable names must begin with a letter and may contain letters, numbers, and underscores. MATLAB is case-sensitive.</p>
+<pre>&gt;&gt; radius = 6;
+&gt;&gt; area = pi * radius^2;
+&gt;&gt; area
+area =
+  113.0973
+
+&gt;&gt; name = 'MATLAB';
+&gt;&gt; name
+name =
+    'MATLAB'</pre>
+<div class="note">Valid names: <code>marks</code>, <code>total_1</code>, <code>studentAge</code>. Invalid names: <code>2marks</code>, <code>total-value</code>, <code>for</code>.</div>
+
+<h3>Managing variables</h3>
+<table>
+<tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+<tr><td><code>clc</code></td><td>Clears the Command Window</td><td><code>clc</code></td></tr>
+<tr><td><code>clear</code></td><td>Deletes all variables</td><td><code>clear</code></td></tr>
+<tr><td><code>clear x</code></td><td>Deletes one variable</td><td><code>clear x</code></td></tr>
+<tr><td><code>who</code></td><td>Lists variable names</td><td><code>who</code></td></tr>
+<tr><td><code>whos</code></td><td>Lists variables with details</td><td><code>whos</code></td></tr>
+<tr><td><code>help</code></td><td>Shows brief help</td><td><code>help plot</code></td></tr>
+<tr><td><code>doc</code></td><td>Opens documentation</td><td><code>doc plot</code></td></tr>
+<tr><td><code>save</code></td><td>Saves workspace variables</td><td><code>save results.mat</code></td></tr>
+<tr><td><code>load</code></td><td>Loads saved variables</td><td><code>load results.mat</code></td></tr>
+<tr><td><code>exit</code></td><td>Closes MATLAB</td><td><code>exit</code></td></tr>
+</table>
+
+<h3>Script files</h3>
+<p>A script file is a MATLAB program saved with a <code>.m</code> extension. It contains a sequence of commands that can be executed together. Scripts are useful for calculations that need to be repeated or modified.</p>
+<pre>% circle_area.m
+% Program to calculate the area of a circle
+
+radius = 7;
+area = pi * radius^2;
+
+fprintf('Radius = %.2f\n', radius)
+fprintf('Area = %.4f square units\n', area)</pre>
+<div class="lab">
+<h4>Interactive script-output simulator</h4>
+<label>Enter radius</label>
+<input id="radiusInput" type="number" value="7" step="0.1">
+<button onclick="runCircle()">Run circle_area.m</button>
+<div class="output" id="circleOutput"></div>
+</div>
+
+<h4>More script examples</h4>
+<pre>% simple_interest.m
+% Calculates simple interest
+
+principal = 5000;
+rate = 8;
+time = 3;
+
+interest = (principal * rate * time) / 100;
+total = principal + interest;
+
+fprintf('Simple Interest = %.2f\n', interest);
+fprintf('Total Amount = %.2f\n', total);</pre>
+<pre>% temperature_conversion.m
+% Converts Celsius to Fahrenheit
+
+celsius = 37;
+fahrenheit = (9 * celsius / 5) + 32;
+
+fprintf('Celsius = %.2f\n', celsius);
+fprintf('Fahrenheit = %.2f\n', fahrenheit);</pre>
+
+<h3>Practical</h3>
+<div class="practical">
+<ol>
+<li>Calculate \( (15 + 25) / 8 \), \( 3^5 \), \( \sqrt{225} \), and \( 17 \mod 5 \) in the Command Window.</li>
+<li>Create variables <code>a = 18</code> and <code>b = 4</code>. Find their sum, difference, product, quotient, and remainder.</li>
+<li>Display <code>pi</code> using <code>format short</code>, <code>format long</code>, <code>format bank</code>, and <code>format short e</code>.</li>
+<li>Use <code>who</code> and <code>whos</code> after creating at least four variables.</li>
+<li>Write a script <code>rectangle_area.m</code> to calculate the area of a rectangle.</li>
+<li>Write a script to calculate the volume of a sphere: \( V = \frac{4}{3}\pi r^3 \).</li>
+<li>Write a script to convert temperature from Celsius to Fahrenheit.</li>
+<li>Write a script to calculate simple interest and total amount.</li>
+<li>Explore the MATLAB menus: <strong>Home</strong>, <strong>Plots</strong>, <strong>Apps</strong>, and <strong>Editor</strong>. Identify the purpose of Workspace and Current Folder.</li>
+</ol>
+</div>
+
+<h3>Viva questions</h3>
+<div class="viva">
+<ol>
+<li>What is MATLAB? Why is it called MATrix LABoratory?</li>
+<li>What is the difference between the Command Window and Editor?</li>
+<li>What is the purpose of the Workspace window?</li>
+<li>What is the difference between <code>clear</code> and <code>clc</code>?</li>
+<li>What is the difference between <code>/</code> and <code>\</code> in MATLAB?</li>
+<li>What is the purpose of a semicolon at the end of a MATLAB command?</li>
+<li>What is the difference between <code>format short</code> and <code>format long</code>?</li>
+<li>What is a script file?</li>
+<li>What is the file extension of a MATLAB script?</li>
+<li>What is the difference between <code>rem()</code> and <code>mod()</code>?</li>
+</ol>
+</div>
+
+<h3>Self-check</h3>
+<div class="quiz">
+<p>1. Which command clears the Command Window?</p>
+<button onclick="quizCheck(this,false)">clear</button>
+<button onclick="quizCheck(this,true)">clc</button>
+<button onclick="quizCheck(this,false)">close</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>2. What is the result of <code>mod(23,5)</code>?</p>
+<button onclick="quizCheck(this,false)">4</button>
+<button onclick="quizCheck(this,true)">3</button>
+<button onclick="quizCheck(this,false)">4.6</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>3. Which file extension is used for a MATLAB script?</p>
+<button onclick="quizCheck(this,false)">.mat</button>
+<button onclick="quizCheck(this,true)">.m</button>
+<button onclick="quizCheck(this,false)">.mlx</button>
+<div class="feedback"></div>
+</div>
+</section>
+
+<section id="m2">
+<h2>Module 2: MATLAB Programming <span class="badge">6Hrs + 3Hrs | CO-2 | BTL-3</span></h2>
+<p>MATLAB programs use relational operators, logical operators, conditional statements, loops, and functions to make decisions and repeat calculations. These constructs allow a program to respond to different input values and automate repeated work.</p>
+
+<h3>Relational operators</h3>
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td><code>==</code></td><td>Equal to</td><td><code>8 == 8</code></td><td><code>1</code></td></tr>
+<tr><td><code>~=</code></td><td>Not equal to</td><td><code>8 ~= 7</code></td><td><code>1</code></td></tr>
+<tr><td><code>&gt;</code></td><td>Greater than</td><td><code>8 &gt; 7</code></td><td><code>1</code></td></tr>
+<tr><td><code>&lt;</code></td><td>Less than</td><td><code>8 &lt; 7</code></td><td><code>0</code></td></tr>
+<tr><td><code>&gt;=</code></td><td>Greater than or equal to</td><td><code>8 &gt;= 8</code></td><td><code>1</code></td></tr>
+<tr><td><code>&lt;=</code></td><td>Less than or equal to</td><td><code>8 &lt;= 7</code></td><td><code>0</code></td></tr>
+</table>
+<p>MATLAB uses <code>1</code> for true and <code>0</code> for false.</p>
+
+<h3>Logical operators</h3>
+<table>
+<tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+<tr><td><code>&amp;&amp;</code></td><td>Logical AND</td><td><code>(8&gt;5) &amp;&amp; (3&lt;10)</code></td><td><code>1</code></td></tr>
+<tr><td><code>||</code></td><td>Logical OR</td><td><code>(8&lt;5) || (3&lt;10)</code></td><td><code>1</code></td></tr>
+<tr><td><code>~</code></td><td>Logical NOT</td><td><code>~(8&gt;5)</code></td><td><code>0</code></td></tr>
+</table>
+
+<div class="lab">
+<h4>Relational and logical operator tester</h4>
+<label>Value A</label><input id="logA" type="number" value="8">
+<label>Value B</label><input id="logB" type="number" value="5">
+<button onclick="runLogic()">Evaluate operators</button>
+<div class="output" id="logicOutput"></div>
+</div>
+
+<h3>If structures</h3>
+<pre>% Check whether a number is positive, negative, or zero
+n = -6;
+
+if n > 0
+    fprintf('%d is positive\n', n);
+elseif n < 0
+    fprintf('%d is negative\n', n);
+else
+    fprintf('The number is zero\n');
+end</pre>
+<pre>% Grade calculation
+marks = 82;
+
+if marks >= 90
+    grade = 'A';
+elseif marks >= 75
+    grade = 'B';
+elseif marks >= 60
+    grade = 'C';
+elseif marks >= 40
+    grade = 'D';
+else
+    grade = 'F';
+end
+
+fprintf('Marks = %d, Grade = %s\n', marks, grade)</pre>
+
+<div class="lab">
+<h4>Interactive grade calculator</h4>
+<label>Enter marks (0–100)</label>
+<input id="marksInput" type="number" value="82" min="0" max="100">
+<button onclick="runGrade()">Run grade program</button>
+<div class="output" id="gradeOutput"></div>
+</div>
+
+<h3>switch-case statement</h3>
+<p>The <code>switch-case</code> statement is useful when a single variable must be compared with several possible values.</p>
+<pre>day = 4;
+
+switch day
+    case 1
+        fprintf('Monday\n');
+    case 2
+        fprintf('Tuesday\n');
+    case 3
+        fprintf('Wednesday\n');
+    case 4
+        fprintf('Thursday\n');
+    otherwise
+        fprintf('Invalid day\n');
+end</pre>
+
+<h3>Loops</h3>
+<p>A <code>for</code> loop repeats statements for a known number of iterations. A <code>while</code> loop repeats as long as its condition remains true.</p>
+<pre>% Sum of first n natural numbers
+n = 10;
+total = 0;
+
+for k = 1:n
+    total = total + k;
+end
+
+fprintf('Sum of first %d numbers = %d\n', n, total);</pre>
+<pre>% Factorial using while loop
+n = 5;
+fact = 1;
+k = 1;
+
+while k <= n
+    fact = fact * k;
+    k = k + 1;
+end
+
+fprintf('Factorial of %d = %d\n', n, fact);</pre>
+
+<div class="lab">
+<h4>Loop visualizer: factorial and sum</h4>
+<label>Enter n</label>
+<input id="loopN" type="number" value="6" min="1" max="12">
+<button onclick="runLoop()">Run loop</button>
+<div class="output" id="loopOutput"></div>
+<div class="canvasbox"><canvas id="loopChart" width="800" height="300"></canvas></div>
+</div>
+
+<h3>Nested loops and nested conditions</h3>
+<pre>% Multiplication table using nested loops
+for i = 1:3
+    for j = 1:3
+        fprintf('%d x %d = %d\n', i, j, i*j);
+    end
+end</pre>
+<pre>% Nested if example
+n = 8;
+
+if n > 0
+    if mod(n,2) == 0
+        fprintf('%d is positive and even\n', n);
+    else
+        fprintf('%d is positive and odd\n', n);
+    end
+else
+    fprintf('%d is not positive\n', n);
+end</pre>
+
+<h3>break and continue</h3>
+<pre>% break example
+for k = 1:10
+    if k == 6
+        break;
+    end
+    fprintf('%d ', k);
+end
+% Output: 1 2 3 4 5</pre>
+<pre>% continue example
+for k = 1:8
+    if mod(k,2) == 0
+        continue;
+    end
+    fprintf('%d ', k);
+end
+% Output: 1 3 5 7</pre>
+
+<h3>Function files</h3>
+<p>A function file contains reusable MATLAB code. The function name should generally match the file name. Inputs are passed through parentheses and outputs are returned to the calling program.</p>
+<pre>% File name: area_circle.m
+function area = area_circle(radius)
+% AREA_CIRCLE calculates the area of a circle.
+
+area = pi * radius^2;
+end</pre>
+<pre>&gt;&gt; area_circle(5)
+ans =
+   78.5398</pre>
+
+<pre>% File name: max_of_two.m
+function larger = max_of_two(a,b)
+if a > b
+    larger = a;
+else
+    larger = b;
+end
+end</pre>
+
+<h3>Local and global variables</h3>
+<table>
+<tr><th>Type</th><th>Scope</th><th>Example</th></tr>
+<tr><td>Local variable</td><td>Available only within the function or script where it is created</td><td><code>total</code> inside a function</td></tr>
+<tr><td>Global variable</td><td>Shared between the base workspace and functions that declare it</td><td><code>global RATE</code></td></tr>
+</table>
+<pre>% Main script
+global RATE
+RATE = 0.18;
+
+amount = 2500;
+tax = amount * RATE;
+fprintf('Tax = %.2f\n', tax);</pre>
+<pre>% File name: calculate_tax.m
+function tax = calculate_tax(amount)
+global RATE
+tax = amount * RATE;
+end</pre>
+<div class="note">Global variables should be used carefully because they can be changed from multiple places, making programs difficult to debug. Passing values as function arguments is usually better.</div>
+
+<h3>Script file versus function file</h3>
+<table>
+<tr><th>Feature</th><th>Script file</th><th>Function file</th></tr>
+<tr><td>File extension</td><td><code>.m</code></td><td><code>.m</code></td></tr>
+<tr><td>Input arguments</td><td>Not required</td><td>Usually required</td></tr>
+<tr><td>Output arguments</td><td>Not required</td><td>Usually returned</td></tr>
+<tr><td>Workspace</td><td>Uses base workspace</td><td>Uses its own local workspace</td></tr>
+<tr><td>Reuse</td><td>Limited</td><td>High</td></tr>
+<tr><td>Example</td><td><code>circle_area.m</code></td><td><code>area_circle.m</code></td></tr>
+</table>
+
+<h3>Practical</h3>
+<div class="practical">
+<ol>
+<li>Write a program to check whether a number is even or odd.</li>
+<li>Write a program to find the largest of three numbers.</li>
+<li>Use a <code>for</code> loop to print the multiplication table of a number.</li>
+<li>Use a <code>while</code> loop to calculate the factorial of a number.</li>
+<li>Write a program to print all prime numbers from 1 to 50.</li>
+<li>Create a function <code>is_prime(n)</code> that returns true if <code>n</code> is prime.</li>
+<li>Create a function to convert Celsius temperature to Fahrenheit.</li>
+<li>Create a function to calculate the area and perimeter of a rectangle.</li>
+<li>Compare script files and function files in terms of purpose, inputs, outputs, and reuse.</li>
+</ol>
+</div>
+
+<h3>Viva questions</h3>
+<div class="viva">
+<ol>
+<li>What is the difference between <code>==</code> and <code>=</code>?</li>
+<li>What is the difference between <code>&amp;&amp;</code> and <code>&amp;</code>?</li>
+<li>When should <code>if-else</code> be used instead of <code>switch-case</code>?</li>
+<li>What is the difference between <code>for</code> and <code>while</code> loops?</li>
+<li>What is the purpose of <code>break</code>?</li>
+<li>What is the purpose of <code>continue</code>?</li>
+<li>What is a function file?</li>
+<li>What is the difference between a local and global variable?</li>
+<li>Why should global variables be used carefully?</li>
+<li>What is nesting in MATLAB programming?</li>
+</ol>
+</div>
+
+<h3>Self-check</h3>
+<div class="quiz">
+<p>1. Which command exits a loop immediately?</p>
+<button onclick="quizCheck(this,false)">continue</button>
+<button onclick="quizCheck(this,true)">break</button>
+<button onclick="quizCheck(this,false)">return</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>2. Which operator represents logical AND?</p>
+<button onclick="quizCheck(this,false)">||</button>
+<button onclick="quizCheck(this,true)">&amp;&amp;</button>
+<button onclick="quizCheck(this,false)">~</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>3. What is the output of <code>factorial(4)</code>?</p>
+<button onclick="quizCheck(this,false)">16</button>
+<button onclick="quizCheck(this,true)">24</button>
+<button onclick="quizCheck(this,false)">10</button>
+<div class="feedback"></div>
+</div>
+</section>
+
+<section id="m3">
+<h2>Module 3: Arrays and Mathematical Operations <span class="badge">6Hrs + 3Hrs | CO-3 | BTL-3</span></h2>
+<p>An array is a collection of values stored under one variable name. A one-dimensional array is called a vector, while a two-dimensional array is called a matrix. MATLAB is designed around matrix operations, so arrays are central to its use.</p>
+
+<h3>Creating arrays</h3>
+<pre>&gt;&gt; row = [2 4 6 8]
+row =
+     2     4     6     8
+
+&gt;&gt; column = [2; 4; 6]
+column =
+     2
+     4
+     6
+
+&gt;&gt; A = [1 2 3; 4 5 6; 7 8 9]
+A =
+     1     2     3
+     4     5     6
+     7     8     9</pre>
+
+<h3>Colon operator and array functions</h3>
+<pre>&gt;&gt; x = 1:5
+x =
+     1     2     3     4     5
+
+&gt;&gt; y = 0:2:10
+y =
+     0     2     4     6     8    10
+
+&gt;&gt; z = linspace(0,1,5)
+z =
+         0    0.2500    0.5000    0.7500    1.0000
+
+&gt;&gt; zeros(2,3)
+ans =
+     0     0     0
+     0     0     0
+
+&gt;&gt; ones(2,3)
+ans =
+     1     1     1
+     1     1     1
+
+&gt;&gt; eye(3)
+ans =
+     1     0     0
+     0     1     0
+     0     0     1</pre>
+<table>
+<tr><th>Function</th><th>Purpose</th></tr>
+<tr><td><code>zeros(m,n)</code></td><td>Creates an \(m \times n\) matrix of zeros</td></tr>
+<tr><td><code>ones(m,n)</code></td><td>Creates an \(m \times n\) matrix of ones</td></tr>
+<tr><td><code>eye(n)</code></td><td>Creates an \(n \times n\) identity matrix</td></tr>
+<tr><td><code>linspace(a,b,n)</code></td><td>Creates n equally spaced points from a to b</td></tr>
+<tr><td><code>size(A)</code></td><td>Returns number of rows and columns</td></tr>
+<tr><td><code>length(v)</code></td><td>Returns length of a vector</td></tr>
+<tr><td><code>numel(A)</code></td><td>Returns total number of elements</td></tr>
+<tr><td><code>sum(A)</code></td><td>Calculates sum</td></tr>
+<tr><td><code>mean(A)</code></td><td>Calculates mean</td></tr>
+<tr><td><code>max(A)</code></td><td>Finds maximum value</td></tr>
+<tr><td><code>min(A)</code></td><td>Finds minimum value</td></tr>
+<tr><td><code>sort(A)</code></td><td>Sorts elements</td></tr>
+<tr><td><code>diag(A)</code></td><td>Extracts or creates a diagonal matrix</td></tr>
+<tr><td><code>trace(A)</code></td><td>Calculates sum of diagonal elements</td></tr>
+</table>
+
+<h3>Transpose and array addressing</h3>
+<pre>&gt;&gt; A = [1 2; 3 4];
+&gt;&gt; A'
+ans =
+     1     3
+     2     4
+
+&gt;&gt; A(1,2)
+ans =
+     2
+
+&gt;&gt; A(2,:)
+ans =
+     3     4
+
+&gt;&gt; A(:,1)
+ans =
+     1
+     3</pre>
+<table>
+<tr><th>Expression</th><th>Meaning</th></tr>
+<tr><td><code>A(i,j)</code></td><td>Element in row i, column j</td></tr>
+<tr><td><code>A(i,:)</code></td><td>Entire row i</td></tr>
+<tr><td><code>A(:,j)</code></td><td>Entire column j</td></tr>
+<tr><td><code>A'</code></td><td>Transpose of A</td></tr>
+<tr><td><code>A(:)</code></td><td>Converts matrix into a column vector</td></tr>
+<tr><td><code>A(1:2,2:3)</code></td><td>Submatrix from rows 1–2 and columns 2–3</td></tr>
+</table>
+
+<h3>Matrix operations</h3>
+<p>Matrix multiplication follows linear-algebra rules. Element-wise operations use a dot before the operator.</p>
+<table>
+<tr><th>Operation</th><th>Matrix operation</th><th>Element-wise operation</th></tr>
+<tr><td>Multiplication</td><td><code>A*B</code></td><td><code>A.*B</code></td></tr>
+<tr><td>Division</td><td><code>A/B</code> or <code>A\B</code></td><td><code>A./B</code></td></tr>
+<tr><td>Power</td><td><code>A^2</code></td><td><code>A.^2</code></td></tr>
+</table>
+<pre>&gt;&gt; A = [1 2; 3 4];
+&gt;&gt; B = [5 6; 7 8];
+
+&gt;&gt; A*B
+ans =
+    19    22
+    43    50
+
+&gt;&gt; A.*B
+ans =
+     5    12
+    21    32
+
+&gt;&gt; A.^2
+ans =
+     1     4
+     9    16</pre>
+
+<div class="lab">
+<h4>Interactive matrix laboratory</h4>
+<label>Matrix A — enter rows separated by semicolons</label>
+<input id="matrixA" value="2 3; 1 4">
+<label>Matrix B — enter rows separated by semicolons</label>
+<input id="matrixB" value="1 2; 3 4">
+<button onclick="matrixOp('+')">A + B</button>
+<button onclick="matrixOp('-')">A - B</button>
+<button onclick="matrixOp('*')">A * B</button>
+<button onclick="matrixOp('.*')">A .* B</button>
+<button onclick="matrixOp('transpose')">Transpose A</button>
+<button onclick="matrixOp('inverse')">Inverse A</button>
+<button onclick="matrixOp('det')">Determinant A</button>
+<button onclick="matrixOp('eig')">Eigenvalues A</button>
+<div class="output" id="matrixOutput"></div>
+</div>
+
+<h3>Matrix inverse and simultaneous equations</h3>
+<p>For a system \(Ax=b\), where \(A\) is square and nonsingular, the solution is \(x=A^{-1}b\). In MATLAB, the backslash operator is generally preferred.</p>
+<pre>% Solve:
+% 2x + 3y = 8
+% 5x + 4y = 17
+
+A = [2 3; 5 4];
+b = [8; 17];
+
+x = A\b;
+fprintf('x = %.2f, y = %.2f\n', x(1), x(2));</pre>
+<pre>&gt;&gt; inv(A)
+ans =
+   -0.4444    0.3333
+    0.5556   -0.2222
+
+&gt;&gt; det(A)
+ans =
+   -7
+
+&gt;&gt; eig(A)
+ans =
+   -0.3723
+    6.3723</pre>
+
+<h3>Random number generation</h3>
+<pre>&gt;&gt; rand
+ans =
+    0.8147
+
+&gt;&gt; rand(2,3)
+ans =
+    0.9058    0.1270    0.9134
+    0.9134    0.6324    0.0975
+
+&gt;&gt; randi(10)
+ans =
+     9
+
+&gt;&gt; randi([1,6],2,3)
+ans =
+     3     5     1
+     6     2     4
+
+&gt;&gt; randn(2,2)
+ans =
+    0.5377   -2.2588
+    1.8339    0.8622</pre>
+<div class="lab">
+<h4>Random number generator and histogram</h4>
+<label>Number of random values</label>
+<input id="randCount" type="number" value="200" min="10" max="2000">
+<label>Type</label>
+<select id="randType"><option value="uniform">Uniform: rand</option><option value="normal">Normal: randn</option><option value="integer">Integer: randi(1,10)</option></select>
+<button onclick="generateRandom()">Generate</button>
+<div class="output" id="randomOutput"></div>
+<div class="canvasbox"><canvas id="randomChart" width="800" height="320"></canvas></div>
+</div>
+
+<h3>Strings</h3>
+<pre>&gt;&gt; s = 'MATLAB';
+&gt;&gt; length(s)
+ans =
+     6
+
+&gt;&gt; upper(s)
+ans =
+    'MATLAB'
+
+&gt;&gt; strcat('MAT','LAB')
+ans =
+    'MATLAB'
+
+&gt;&gt; str2double('25')
+ans =
+    25</pre>
+
+<h3>Practical</h3>
+<div class="practical">
+<ol>
+<li>Create a \(3 \times 3\) matrix and find its transpose, determinant, inverse, and eigenvalues.</li>
+<li>Create two \(2 \times 2\) matrices and perform addition, subtraction, matrix multiplication, and element-wise multiplication.</li>
+<li>Generate a \(4 \times 4\) matrix of random integers between 1 and 50.</li>
+<li>Solve \(3x + 2y = 12\) and \(x - y = 1\) using matrix methods.</li>
+<li>Create a vector of 10 random integers and find its maximum, minimum, mean, and sum.</li>
+<li>Create a string, find its length, convert it to uppercase, and concatenate it with another string.</li>
+<li>Explain the difference between <code>A*B</code>, <code>A.*B</code>, <code>A^2</code>, and <code>A.^2</code>.</li>
+</ol>
+</div>
+
+<h3>Viva questions</h3>
+<div class="viva">
+<ol>
+<li>What is the difference between a vector and a matrix?</li>
+<li>What is the purpose of the colon operator?</li>
+<li>What is the difference between <code>linspace</code> and the colon operator?</li>
+<li>What is matrix transpose?</li>
+<li>What is the difference between matrix multiplication and element-wise multiplication?</li>
+<li>When does a matrix have an inverse?</li>
+<li>What is the purpose of <code>det()</code>?</li>
+<li>What are eigenvalues?</li>
+<li>What is the difference between <code>rand</code>, <code>randi</code>, and <code>randn</code>?</li>
+<li>How is a system of linear equations solved in MATLAB?</li>
+</ol>
+</div>
+
+<h3>Self-check</h3>
+<div class="quiz">
+<p>1. Which command performs element-wise multiplication?</p>
+<button onclick="quizCheck(this,false)">A*B</button>
+<button onclick="quizCheck(this,true)">A.*B</button>
+<button onclick="quizCheck(this,false)">A^B</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>2. Which command solves \(Ax=b\) most directly?</p>
+<button onclick="quizCheck(this,false)">x = b/A</button>
+<button onclick="quizCheck(this,true)">x = A\b</button>
+<button onclick="quizCheck(this,false)">x = A*b</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>3. Which function creates an identity matrix?</p>
+<button onclick="quizCheck(this,false)">ones</button>
+<button onclick="quizCheck(this,false)">zeros</button>
+<button onclick="quizCheck(this,true)">eye</button>
+<div class="feedback"></div>
+</div>
+</section>
+
+<section id="m4">
+<h2>Module 4: Graphic Functions <span class="badge">6Hrs + 3Hrs | CO-4 | BTL-3</span></h2>
+<p>MATLAB provides powerful plotting functions for visualizing mathematical functions, experimental data, signals, and simulation results. Good plots include axis labels, titles, legends, and grids.</p>
+
+<h3>2D line plots</h3>
+<pre>x = 0:0.1:2*pi;
+y = sin(x);
+
+plot(x, y)
+xlabel('x')
+ylabel('sin(x)')
+title('Sine Wave')
+grid on</pre>
+<div class="lab">
+<h4>Interactive function plotter</h4>
+<label>Select function</label>
+<select id="funcSelect">
+<option value="sin">sin(x)</option>
+<option value="cos">cos(x)</option>
+<option value="x2">x^2</option>
+<option value="exp">exp(x)</option>
+</select>
+<label>Maximum x value</label>
+<input id="xmax" type="number" value="6.28" step="0.1" min="1" max="20">
+<button onclick="drawFunction()">Plot</button>
+<div class="canvasbox"><canvas id="functionChart" width="820" height="360"></canvas></div>
+<div class="output" id="functionOutput"></div>
+</div>
+
+<h3>Formatting plots</h3>
+<pre>x = 0:0.1:2*pi;
+
+plot(x, sin(x), 'r-', 'LineWidth', 2)
+hold on
+plot(x, cos(x), 'b--', 'LineWidth', 2)
+
+legend('sin(x)', 'cos(x)')
+xlabel('Angle (radians)')
+ylabel('Value')
+title('Trigonometric Functions')
+grid on</pre>
+<table>
+<tr><th>Style</th><th>Meaning</th></tr>
+<tr><td><code>'r-'</code></td><td>Red solid line</td></tr>
+<tr><td><code>'b--'</code></td><td>Blue dashed line</td></tr>
+<tr><td><code>'g:'</code></td><td>Green dotted line</td></tr>
+<tr><td><code>'k*'</code></td><td>Black asterisk markers</td></tr>
+<tr><td><code>'LineWidth'</code></td><td>Sets line thickness</td></tr>
+<tr><td><code>legend</code></td><td>Identifies plotted data series</td></tr>
+<tr><td><code>grid on</code></td><td>Displays grid lines</td></tr>
+</table>
+
+<h3>Multiple plots and figure windows</h3>
+<pre>x = 0:0.1:2*pi;
+
+figure
+plot(x, sin(x))
+title('Figure 1: Sine')
+
+figure
+plot(x, cos(x))
+title('Figure 2: Cosine')</pre>
+<pre>% Multiple plots in one figure window
+x = 0:0.1:2*pi;
+
+subplot(2,1,1)
+plot(x, sin(x))
+title('Sine Wave')
+
+subplot(2,1,2)
+plot(x, cos(x))
+title('Cosine Wave')</pre>
+
+<h3>Bar, pie, and error-bar plots</h3>
+<pre>% Bar chart
+categories = {'A','B','C','D'};
+values = [45 60 30 80];
+bar(categories, values)
+ylabel('Marks')
+title('Student Marks')</pre>
+
+<pre>% Pie chart
+data = [35 25 20 20];
+labels = {'Python','MATLAB','C','Java'};
+pie(data, labels)
+title('Programming Language Preference')</pre>
+
+<pre>% Error bars
+x = 1:5;
+y = [10 12 9 15 11];
+errors = [1 0.5 0.8 1.2 0.6];
+errorbar(x, y, errors, 'o-')
+ylabel('Measurement')
+title('Experimental Data with Error Bars')</pre>
+
+<div class="lab">
+<h4>Interactive bar and pie chart</h4>
+<label>Enter values separated by commas</label>
+<input id="chartValues" value="45,60,30,80">
+<label>Enter category names separated by commas</label>
+<input id="chartLabels" value="A,B,C,D">
+<button onclick="drawCharts()">Draw charts</button>
+<div class="canvasbox"><canvas id="barChart" width="800" height="300"></canvas></div>
+<div class="canvasbox"><canvas id="pieChart" width="360" height="300"></canvas></div>
+</div>
+
+<h3>Logarithmic plots</h3>
+<pre>x = logspace(0,3,20);
+y = x.^2;
+
+loglog(x, y)
+xlabel('x')
+ylabel('x^2')
+title('Log-Log Plot')
+grid on</pre>
+<table>
+<tr><th>Command</th><th>Axis scale</th></tr>
+<tr><td><code>semilogx</code></td><td>Logarithmic x-axis, linear y-axis</td></tr>
+<tr><td><code>semilogy</code></td><td>Linear x-axis, logarithmic y-axis</td></tr>
+<tr><td><code>loglog</code></td><td>Both axes logarithmic</td></tr>
+</table>
+
+<h3>3D mesh and surface plots</h3>
+<pre>% Mesh plot
+[X,Y] = meshgrid(-3:0.2:3);
+Z = sin(sqrt(X.^2 + Y.^2));
+
+mesh(X,Y,Z)
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title('Mesh Plot')</pre>
+<pre>% Surface plot
+[X,Y] = meshgrid(-3:0.2:3);
+Z = sin(sqrt(X.^2 + Y.^2));
+
+surf(X,Y,Z)
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+title('Surface Plot')
+colorbar</pre>
+<div class="lab">
+<h4>Interactive 3D surface visualizer</h4>
+<label>Select surface</label>
+<select id="surfaceSelect">
+<option value="saddle">z = x^2 - y^2</option>
+<option value="bowl">z = x^2 + y^2</option>
+<option value="wave">z = sin(sqrt(x^2+y^2))</option>
+</select>
+<button onclick="drawSurface()">Draw surface</button>
+<div class="canvasbox"><canvas id="surfaceChart" width="820" height="420"></canvas></div>
+</div>
+
+<h3>Histogram and polar plots</h3>
+<pre>% Histogram
+data = randn(1,1000);
+histogram(data, 20)
+xlabel('Value')
+ylabel('Frequency')
+title('Histogram of Random Data')</pre>
+<pre>% Polar plot
+theta = 0:0.01:2*pi;
+r = abs(sin(3*theta));
+polarplot(theta, r)
+title('Polar Plot')</pre>
+
+<h3>Practical</h3>
+<div class="practical">
+<ol>
+<li>Plot \(y=\sin(x)\) and \(y=\cos(x)\) from 0 to \(2\pi\) on the same graph with legend and grid.</li>
+<li>Create a bar chart of marks obtained by five students.</li>
+<li>Create a pie chart showing marks distribution across four subjects.</li>
+<li>Plot \(y=x^2\) using a logarithmic y-axis.</li>
+<li>Create mesh and surface plots for \(z=x^2+y^2\).</li>
+<li>Generate 1,000 random normal values and display their histogram.</li>
+<li>Create a polar plot of \(r=1+\cos\theta\).</li>
+<li>Create two separate figure windows and plot different functions in each.</li>
+</ol>
+</div>
+
+<h3>Viva questions</h3>
+<div class="viva">
+<ol>
+<li>What is the purpose of the <code>plot()</code> function?</li>
+<li>What is the difference between <code>plot()</code> and <code>bar()</code>?</li>
+<li>What is the purpose of <code>legend()</code>?</li>
+<li>What is the purpose of <code>grid on</code>?</li>
+<li>What is the difference between <code>mesh()</code> and <code>surf()</code>?</li>
+<li>What is the purpose of <code>subplot()</code>?</li>
+<li>What is the difference between <code>semilogy()</code> and <code>loglog()</code>?</li>
+<li>What is a histogram?</li>
+<li>What is a polar plot?</li>
+<li>Why are axis labels and titles important in a graph?</li>
+</ol>
+</div>
+
+<h3>Self-check</h3>
+<div class="quiz">
+<p>1. Which command creates a bar chart?</p>
+<button onclick="quizCheck(this,false)">plot</button>
+<button onclick="quizCheck(this,true)">bar</button>
+<button onclick="quizCheck(this,false)">pie</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>2. Which function creates a 3D surface plot?</p>
+<button onclick="quizCheck(this,false)">meshgrid</button>
+<button onclick="quizCheck(this,true)">surf</button>
+<button onclick="quizCheck(this,false)">errorbar</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>3. Which command displays a histogram?</p>
+<button onclick="quizCheck(this,false)">bar</button>
+<button onclick="quizCheck(this,true)">histogram</button>
+<button onclick="quizCheck(this,false)">polarplot</button>
+<div class="feedback"></div>
+</div>
+</section>
+
+<section id="m5">
+<h2>Module 5: Numerical Analysis &amp; Simulink <span class="badge">6Hrs + 3Hrs | CO-5 | BTL-3</span></h2>
+<p>Numerical analysis uses computational methods to solve mathematical problems that may be difficult or impossible to solve exactly. Common applications include polynomial evaluation, curve fitting, interpolation, root finding, and solving equations. Simulink extends MATLAB by providing a graphical environment for modelling and simulating dynamic systems.</p>
+
+<h3>Polynomials</h3>
+<p>MATLAB represents a polynomial using a vector of coefficients in descending powers of \(x\). For example, \(2x^3+3x^2-x+5\) is represented as <code>[2 3 -1 5]</code>.</p>
+<pre>p = [2 3 -1 5];
+
+% Evaluate polynomial at x = 2
+value = polyval(p,2)
+% value = 31
+
+% Find roots
+r = roots(p)</pre>
+<table>
+<tr><th>Function</th><th>Purpose</th></tr>
+<tr><td><code>polyval(p,x)</code></td><td>Evaluates polynomial p at x</td></tr>
+<tr><td><code>roots(p)</code></td><td>Finds roots of polynomial p</td></tr>
+<tr><td><code>poly(r)</code></td><td>Creates polynomial from roots</td></tr>
+<tr><td><code>conv(p,q)</code></td><td>Multiplies two polynomials</td></tr>
+<tr><td><code>deconv(p,q)</code></td><td>Divides one polynomial by another</td></tr>
+<tr><td><code>polyder(p)</code></td><td>Differentiates a polynomial</td></tr>
+</table>
+
+<div class="lab">
+<h4>Interactive polynomial evaluator</h4>
+<label>Enter coefficients in descending powers, e.g. 2 3 -1 5</label>
+<input id="polyCoeffs" value="2 3 -1 5">
+<label>Enter x value</label>
+<input id="polyX" type="number" value="2" step="0.1">
+<button onclick="evaluatePoly()">Evaluate polynomial</button>
+<div class="output" id="polyOutput"></div>
+<div class="canvasbox"><canvas id="polyChart" width="820" height="330"></canvas></div>
+</div>
+
+<h3>Curve fitting</h3>
+<p>Curve fitting finds a mathematical function that best represents a set of data points. Linear fitting finds the best straight line. Polynomial fitting fits a polynomial of a selected degree.</p>
+<pre>x = [1 2 3 4 5];
+y = [2.1 4.0 6.2 8.1 9.9];
+
+% Linear fit: y = m*x + c
+p = polyfit(x,y,1);
+fprintf('Slope = %.4f, Intercept = %.4f\n', p(1), p(2));
+
+% Plot original data and fitted line
+xfit = linspace(1,5,100);
+yfit = polyval(p,xfit);
+
+plot(x,y,'ro','MarkerFaceColor','r')
+hold on
+plot(xfit,yfit,'b-','LineWidth',2)
+legend('Data','Linear fit')
+xlabel('x')
+ylabel('y')
+title('Linear Curve Fitting')
+grid on</pre>
+
+<div class="lab">
+<h4>Interactive curve fitting</h4>
+<label>Enter x values</label><input id="fitX" value="1,2,3,4,5">
+<label>Enter y values</label><input id="fitY" value="2.1,4.0,6.2,8.1,9.9">
+<label>Polynomial degree</label>
+<select id="fitDegree"><option value="1">1 — Linear</option><option value="2">2 — Quadratic</option><option value="3">3 — Cubic</option></select>
+<button onclick="runFit()">Fit curve</button>
+<div class="output" id="fitOutput"></div>
+<div class="canvasbox"><canvas id="fitChart" width="820" height="360"></canvas></div>
+</div>
+
+<h3>Interpolation</h3>
+<p>Interpolation estimates values between known data points. Unlike curve fitting, interpolation normally passes exactly through the given data points.</p>
+<pre>x = [1 2 3 4 5];
+y = [2 4 6 8 10];
+
+% Linear interpolation at x = 2.5
+yi = interp1(x,y,2.5)
+% yi = 5
+
+% Spline interpolation
+yi_spline = interp1(x,y,2.5,'spline')</pre>
+
+<div class="lab">
+<h4>Interactive linear interpolation</h4>
+<label>Enter x values</label><input id="intX" value="1,2,3,4,5">
+<label>Enter y values</label><input id="intY" value="2,4,6,8,10">
+<label>Enter x value to interpolate</label><input id="intTarget" type="number" value="2.5" step="0.1">
+<button onclick="runInterp()">Interpolate</button>
+<div class="output" id="interpOutput"></div>
+<div class="canvasbox"><canvas id="interpChart" width="820" height="330"></canvas></div>
+</div>
+
+<h3>Basic Fitting interface</h3>
+<p>After plotting data, open <strong>Tools &rarr; Basic Fitting</strong> in the MATLAB figure window. This interface allows you to choose linear, quadratic, cubic, or higher-order polynomial fits, display the fitted equation, plot residuals, and evaluate the fit at selected points.</p>
+<div class="note">A higher-degree polynomial may fit the sample points closely but may behave poorly between or outside the data range. This is called overfitting.</div>
+
+<h3>Solving basic equations</h3>
+<pre>% Solve x^2 - 5x + 6 = 0
+p = [1 -5 6];
+roots(p)
+% ans =
+%     3
+%     2</pre>
+<pre>% Solve 2x + 3y = 8 and 5x + 4y = 17
+A = [2 3; 5 4];
+b = [8; 17];
+x = A\b</pre>
+
+<h3>Introduction to Simulink</h3>
+<p>Simulink is a MATLAB-based graphical environment for modelling, simulating, and analysing dynamic systems. Instead of writing every equation as code, users connect blocks that represent inputs, mathematical operations, systems, and outputs.</p>
+<div class="grid">
+<div class="card"><strong>Sources</strong><br>Provide input signals, such as <code>Step</code>, <code>Sine Wave</code>, <code>Ramp</code>, and <code>Constant</code>.</div>
+<div class="card"><strong>Math Operations</strong><br>Perform addition, subtraction, multiplication, gain, and other calculations.</div>
+<div class="card"><strong>Continuous</strong><br>Model differential equations and dynamic systems, such as <code>Integrator</code> and <code>Transfer Fcn</code>.</div>
+<div class="card"><strong>Sinks</strong><br>Display or store outputs, such as <code>Scope</code>, <code>Display</code>, and <code>To Workspace</code>.</div>
+<div class="card"><strong>Logic and Bit Operations</strong><br>Perform logical and switching operations.</div>
+<div class="card"><strong>Signal Routing</strong><br>Route, combine, or split signals using blocks such as <code>Mux</code> and <code>Demux</code>.</div>
+</div>
+
+<h4>Simple Simulink model: y = 2x</h4>
+<div class="canvasbox">
+<svg viewBox="0 0 820 180" width="100%" height="180">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#f97316"/></marker></defs>
+<rect x="30" y="60" width="120" height="55" rx="10" fill="#eaf7ff" stroke="#f97316" stroke-width="3"/>
+<text x="90" y="93" fill="#20323f" text-anchor="middle" font-size="16" font-weight="700">Constant x</text>
+<rect x="250" y="60" width="120" height="55" rx="10" fill="#eaf7ff" stroke="#0ea5e9" stroke-width="3"/>
+<text x="310" y="93" fill="#20323f" text-anchor="middle" font-size="16" font-weight="700">Gain: 2</text>
+<rect x="470" y="60" width="120" height="55" rx="10" fill="#eafaf1" stroke="#22c55e" stroke-width="3"/>
+<text x="530" y="93" fill="#20323f" text-anchor="middle" font-size="16" font-weight="700">Display y</text>
+<line x1="150" y1="88" x2="248" y2="88" stroke="#f97316" stroke-width="3" marker-end="url(#arrow)"/>
+<line x1="370" y1="88" x2="468" y2="88" stroke="#f97316" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="200" y="75" fill="#5d7180" font-size="12">x</text>
+<text x="410" y="75" fill="#5d7180" font-size="12">2x</text>
+</svg>
+</div>
+<pre>% Equivalent MATLAB calculation
+x = 5;
+y = 2*x;
+fprintf('Output = %.2f\n', y);</pre>
+
+<div class="lab">
+<h4>Interactive Simulink gain model</h4>
+<label>Input constant x</label><input id="simIn" type="number" value="5" step="0.1">
+<label>Gain value</label><input id="simGain" type="number" value="2" step="0.1">
+<button onclick="runSim()">Run simulation</button>
+<div class="output" id="simOutput"></div>
+<div class="canvasbox"><canvas id="simChart" width="820" height="300"></canvas></div>
+</div>
+
+<h3>Practical</h3>
+<div class="practical">
+<ol>
+<li>Represent \(3x^2+2x-5\) in MATLAB and evaluate it at \(x=2\).</li>
+<li>Find the roots of \(x^2-7x+12=0\).</li>
+<li>Fit a straight line to the data <code>x = [1 2 3 4 5]</code>, <code>y = [2 4 6 8 10]</code>.</li>
+<li>Fit a quadratic polynomial to a given set of data and plot the original data with the fitted curve.</li>
+<li>Use <code>interp1</code> to estimate a value between two known data points.</li>
+<li>Create a Simulink model that adds two constants and displays the result.</li>
+<li>Create a Simulink model using a Sine Wave source, Gain block, and Scope.</li>
+<li>Create a Simulink model for \(y=mx+c\) using Constant, Gain, Sum, and Display blocks.</li>
+</ol>
+</div>
+
+<h3>Viva questions</h3>
+<div class="viva">
+<ol>
+<li>What is numerical analysis?</li>
+<li>What is a polynomial?</li>
+<li>How is a polynomial represented in MATLAB?</li>
+<li>What is the difference between curve fitting and interpolation?</li>
+<li>What is the purpose of <code>polyfit()</code>?</li>
+<li>What is the purpose of <code>polyval()</code>?</li>
+<li>What is overfitting?</li>
+<li>What is Simulink?</li>
+<li>What is the purpose of a Scope block?</li>
+<li>What is the difference between MATLAB and Simulink?</li>
+</ol>
+</div>
+
+<h3>Self-check</h3>
+<div class="quiz">
+<p>1. Which function finds polynomial roots?</p>
+<button onclick="quizCheck(this,false)">polyval</button>
+<button onclick="quizCheck(this,true)">roots</button>
+<button onclick="quizCheck(this,false)">interp1</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>2. Which Simulink block displays a signal graphically?</p>
+<button onclick="quizCheck(this,false)">Constant</button>
+<button onclick="quizCheck(this,true)">Scope</button>
+<button onclick="quizCheck(this,false)">Gain</button>
+<div class="feedback"></div>
+</div>
+<div class="quiz">
+<p>3. Which MATLAB function performs linear interpolation?</p>
+<button onclick="quizCheck(this,false)">polyfit</button>
+<button onclick="quizCheck(this,true)">interp1</button>
+<button onclick="quizCheck(this,false)">roots</button>
+<div class="feedback"></div>
+</div>
+</section>
+</main>
+
+<footer>
+MATLAB Programming — Complete Interactive Study Material | Modules 1–5
+</footer>
+
+<script>
+function quizCheck(btn, correct){
+  const quiz=btn.closest('.quiz');
+  quiz.querySelectorAll('button').forEach(b=>b.classList.remove('correct','wrong'));
+  const fb=quiz.querySelector('.feedback');
+  if(correct){btn.classList.add('correct');fb.textContent='Correct!';fb.style.color='#15803d';}
+  else{btn.classList.add('wrong');fb.textContent='Incorrect. Try again.';fb.style.color='#b91c1c';}
+}
+
+function parseNumbers(text){
+  return text.split(/[,\s]+/).map(Number).filter(v=>!isNaN(v));
+}
+
+function runCalc(){
+  const expr=document.getElementById('calcInput').value;
+  let result;
+  try{
+    const safe=expr.replace(/\^/g,'**').replace(/sqrt/g,'Math.sqrt').replace(/pi/g,'Math.PI').replace(/abs/g,'Math.abs').replace(/exp/g,'Math.exp').replace(/log10/g,'Math.log10').replace(/log\(/g,'Math.log(').replace(/sin\(/g,'Math.sin(').replace(/cos\(/g,'Math.cos(').replace(/tan\(/g,'Math.tan(');
+    result=Function('"use strict";return ('+safe+')')();
+  }catch(e){result='Error: invalid expression';}
+  document.getElementById('calcOutput').textContent='>> '+expr+'\n\nans =\n'+result;
+}
+
+function runCircle(){
+  const r=parseFloat(document.getElementById('radiusInput').value)||0;
+  const area=Math.PI*r*r;
+  document.getElementById('circleOutput').textContent=
+  '>> circle_area\n\nRadius = '+r.toFixed(2)+'\nArea = '+area.toFixed(4)+' square units';
+}
+
+function runLogic(){
+  const a=parseFloat(document.getElementById('logA').value);
+  const b=parseFloat(document.getElementById('logB').value);
+  const out=[
+    'a = '+a+', b = '+b,'',
+    'a == b : '+(a==b?1:0),'a ~= b : '+(a!=b?1:0),
+    'a > b  : '+(a>b?1:0),'a < b  : '+(a<b?1:0),
+    'a >= b : '+(a>=b?1:0),'a <= b : '+(a<=b?1:0),'',
+    '(a>0) && (b>0) : '+((a>0&&b>0)?1:0),
+    '(a>0) || (b>0) : '+((a>0||b>0)?1:0),
+    '~(a>0) : '+(!(a>0)?1:0)].join('\n');
+  document.getElementById('logicOutput').textContent=out;
+}
+
+function runGrade(){
+  const m=parseFloat(document.getElementById('marksInput').value)||0;
+  let grade='F';
+  if(m>=90)grade='A';else if(m>=75)grade='B';else if(m>=60)grade='C';else if(m>=40)grade='D';
+  document.getElementById('gradeOutput').textContent='>> grade_program\n\nMarks = '+m+'\nGrade = '+grade;
+}
+
+function runLoop(){
+  const n=Math.max(1,Math.min(12,parseInt(document.getElementById('loopN').value)||1));
+  let fact=1,total=0,steps=[];
+  for(let k=1;k<=n;k++){fact*=k;total+=k;steps.push({k:k,fact:fact,sum:total});}
+  document.getElementById('loopOutput').textContent=
+  '>> loop_program\n\nn = '+n+'\nFactorial = '+fact+'\nSum of first '+n+' numbers = '+total;
+  drawBars(steps.map(s=>s.k),steps.map(s=>s.fact),'Factorial growth','k','n!');
+}
+
+function matrixOp(op){
+  const parse=s=>s.split(';').map(r=>r.trim().split(/\s+/).map(Number));
+  const A=parse(document.getElementById('matrixA').value);
+  const B=parse(document.getElementById('matrixB').value);
+  const out=[];
+  const show=(name,M)=>out.push(name+' =\n'+M.map(r=>r.map(v=>Number.isFinite(v)?v.toFixed(4):'NaN').join('  ')).join('\n'));
+  if(op==='+')show('A + B',A.map((r,i)=>r.map((v,j)=>v+B[i][j])));
+  else if(op==='-')show('A - B',A.map((r,i)=>r.map((v,j)=>v-B[i][j])));
+  else if(op==='*')show('A * B',A.map((r,i)=>B[0].map((_,j)=>r.reduce((s,v,k)=>s+v*B[k][j],0))));
+  else if(op==='.*')show('A .* B',A.map((r,i)=>r.map((v,j)=>v*B[i][j])));
+  else if(op==='transpose')show("A'",A[0].map((_,j)=>A.map(r=>r[j])));
+  else if(op==='inverse'){
+    const n=A.length;let M=A.map(r=>r.slice()),I=Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>i===j?1:0));
+    for(let c=0;c<n;c++){
+      let p=c;for(let r=c+1;r<n;r++)if(Math.abs(M[r][c])>Math.abs(M[p][c]))p=r;
+      if(Math.abs(M[p][c])<1e-12){out.push('Matrix is singular; inverse does not exist.');document.getElementById('matrixOutput').textContent=out.join('\n\n');return;}
+      [M[c],M[p]]=[M[p],M[c]];[I[c],I[p]]=[I[p],I[c]];
+      const d=M[c][c];for(let j=0;j<n;j++){M[c][j]/=d;I[c][j]/=d;}
+      for(let r=0;r<n;r++){if(r===c)continue;const f=M[r][c];for(let j=0;j<n;j++){M[r][j]-=f*M[c][j];I[r][j]-=f*I[c][j];}}
+    }
+    show('inv(A)',I);
+  }
+  else if(op==='det'){
+    const n=A.length;let M=A.map(r=>r.slice()),det=1;
+    for(let c=0;c<n;c++){
+      let p=c;for(let r=c+1;r<n;r++)if(Math.abs(M[r][c])>Math.abs(M[p][c]))p=r;
+      if(Math.abs(M[p][c])<1e-12){det=0;break;}
+      if(p!==c){[M[c],M[p]]=[M[p],M[c]];det=-det;}
+      det*=M[c][c];
+      for(let r=c+1;r<n;r++){const f=M[r][c]/M[c][c];for(let j=c;j<n;j++)M[r][j]-=f*M[c][j];}
+    }
+    out.push('det(A) = '+det.toFixed(4));
+  }
+  else if(op==='eig'){
+    if(A.length!==2){out.push('Eigenvalue demo supports a 2 x 2 matrix.');}
+    else{
+      const [[a,b],[c,d]]=A,tr=a+d,det=a*d-b*c,disc=tr*tr-4*det;
+      if(disc>=0){const s=Math.sqrt(disc);out.push('eig(A) =\n'+((tr+s)/2).toFixed(4)+'\n'+((tr-s)/2).toFixed(4));}
+      else{const s=Math.sqrt(-disc);out.push('eig(A) =\n'+(tr/2).toFixed(4)+' + '+ (s/2).toFixed(4)+'i\n'+(tr/2).toFixed(4)+' - '+(s/2).toFixed(4)+'i');}
+    }
+  }
+  document.getElementById('matrixOutput').textContent=out.join('\n\n');
+}
+
+function generateRandom(){
+  const n=Math.max(10,Math.min(2000,parseInt(document.getElementById('randCount').value)||100));
+  const type=document.getElementById('randType').value;
+  const data=[];
+  for(let i=0;i<n;i++){
+    if(type==='uniform')data.push(Math.random());
+    else if(type==='normal'){let u=0,v=0;while(u===0)u=Math.random();while(v===0)v=Math.random();data.push(Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v));}
+    else data.push(1+Math.floor(Math.random()*10));
+  }
+  const mean=data.reduce((a,b)=>a+b,0)/n;
+  document.getElementById('randomOutput').textContent='>> random_data\n\nNumber of values = '+n+'\nFirst 10 values:\n'+data.slice(0,10).map(v=>v.toFixed(4)).join('  ')+'\n\nMean = '+mean.toFixed(4)+'\nMinimum = '+Math.min(...data).toFixed(4)+'\nMaximum = '+Math.max(...data).toFixed(4);
+  const bins=15,min=Math.min(...data),max=Math.max(...data),width=(max-min)/bins||1;
+  const counts=Array(bins).fill(0);
+  data.forEach(v=>{let i=Math.floor((v-min)/width);if(i>=bins)i=bins-1;counts[i]++;});
+  drawBars(Array.from({length:bins},(_,i)=>(min+i*width).toFixed(2)),counts,'Random-number distribution','Value','Frequency');
+}
+
+function drawBars(labels,values,title,xlabel,ylabel){
+  const c=document.getElementById('randomChart');const ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  const pad=45,w=c.width-pad-20,h=c.height-pad-25,max=Math.max(...values,1);
+  ctx.strokeStyle='#f0b429';ctx.fillStyle='#5d7180';ctx.font='12px monospace';
+  ctx.beginPath();ctx.moveTo(pad,pad);ctx.lineTo(pad,pad+h);ctx.lineTo(pad+w,pad+h);ctx.stroke();
+  const bw=w/values.length;
+  values.forEach((v,i)=>{
+    const bh=(v/max)*h;
+    ctx.fillStyle=['#f97316','#ffd166','#8ee36b','#38bdf8'][i%4];
+    ctx.fillRect(pad+i*bw+2,pad+h-bh,bw-5,bh);
+  });
+  ctx.fillStyle='#20323f';ctx.font='14px sans-serif';ctx.fillText(title,pad,pad-12);
+  ctx.fillStyle='#5d7180';ctx.font='12px sans-serif';
+  ctx.fillText(xlabel,pad+w/2-20,c.height-8);ctx.fillText(ylabel,8,pad+h/2);
+}
+
+function drawFunction(){
+  const type=document.getElementById('funcSelect').value;
+  const xmax=parseFloat(document.getElementById('xmax').value)||6.28;
+  const c=document.getElementById('functionChart'),ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  const pad=45,w=c.width-pad-20,h=c.height-pad-25;
+  const xs=[],ys=[];
+  for(let i=0;i<=300;i++){
+    const x=(xmax*i)/300;let y;
+    if(type==='sin')y=Math.sin(x);else if(type==='cos')y=Math.cos(x);else if(type==='x2')y=x*x;else y=Math.exp(x/2);
+    xs.push(x);ys.push(y);
+  }
+  const ymin=Math.min(...ys,-1),ymax=Math.max(...ys,1);
+  const X=x=>pad+(x/xmax)*w, Y=y=>pad+h-((y-ymin)/(ymax-ymin))*h;
+  ctx.strokeStyle='#f0b429';ctx.beginPath();ctx.moveTo(pad,Y(0));ctx.lineTo(pad+w,Y(0));ctx.moveTo(X(0),pad);ctx.lineTo(X(0),pad+h);ctx.stroke();
+  ctx.strokeStyle='#f97316';ctx.lineWidth=4;ctx.beginPath();
+  xs.forEach((x,i)=>{i?ctx.lineTo(X(x),Y(ys[i])):ctx.moveTo(X(x),Y(ys[i]))});ctx.stroke();ctx.lineWidth=1;
+  ctx.fillStyle='#20323f';ctx.font='14px sans-serif';ctx.fillText('y = '+({sin:'sin(x)',cos:'cos(x)',x2:'x^2',exp:'exp(x/2)'})[type],pad+10,pad+20);
+  document.getElementById('functionOutput').textContent='>> plot(x,y)\n\nFunction plotted successfully.\nx range: 0 to '+xmax.toFixed(2);
+}
+
+function drawCharts(){
+  const values=parseNumbers(document.getElementById('chartValues').value);
+  const labels=document.getElementById('chartLabels').value.split(',').map(s=>s.trim());
+  drawBars(labels,values,'Bar Chart','Category','Value');
+  const c=document.getElementById('pieChart'),ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  const total=values.reduce((a,b)=>a+b,0)||1;let angle=-Math.PI/2;
+  const colors=['#f97316','#ffd166','#8ee36b','#38bdf8','#a78bfa','#ef4444'];
+  values.forEach((v,i)=>{
+    const slice=(v/total)*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(180,150);ctx.arc(180,150,120,angle,angle+slice);ctx.closePath();
+    ctx.fillStyle=colors[i%colors.length];ctx.fill();angle+=slice;
+  });
+  ctx.fillStyle='#20323f';ctx.font='13px sans-serif';
+  labels.forEach((l,i)=>{ctx.fillStyle=colors[i%colors.length];ctx.fillRect(300,55+i*22,12,12);ctx.fillStyle='#20323f';ctx.fillText(l+' ('+((values[i]/total)*100).toFixed(1)+'%)',320,66+i*22);});
+}
+
+function drawSurface(){
+  const type=document.getElementById('surfaceSelect').value;
+  const c=document.getElementById('surfaceChart'),ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  const N=28,cell=22,ox=c.width/2,oy=90;
+  for(let i=0;i<N;i++)for(let j=0;j<N;j++){
+    const x=(i-N/2)/4,y=(j-N/2)/4;let z;
+    if(type==='saddle')z=x*x-y*y;else if(type==='bowl')z=x*x+y*y;else z=Math.sin(Math.sqrt(x*x+y*y));
+    const px=ox+(i-j)*cell*0.75,py=oy+(i+j)*cell*0.42-z*12;
+    const shade=Math.max(0,Math.min(1,(z+4)/8));
+    ctx.fillStyle='rgb('+Math.round(255-shade*100)+','+Math.round(180+shade*40)+','+Math.round(80+shade*140)+')';
+    ctx.fillRect(px,py,cell*0.7,cell*0.7);
+  }
+  ctx.fillStyle='#20323f';ctx.font='15px sans-serif';ctx.fillText('3D surface visualization',20,28);
+}
+
+function evaluatePoly(){
+  const coeffs=parseNumbers(document.getElementById('polyCoeffs').value);
+  const x=parseFloat(document.getElementById('polyX').value)||0;
+  let value=0;
+  coeffs.forEach((c,i)=>{const power=coeffs.length-1-i;value+=c*Math.pow(x,power);});
+  document.getElementById('polyOutput').textContent='>> p = ['+coeffs.join(' ')+']\n>> polyval(p,'+x+')\n\nans =\n'+value.toFixed(4);
+  const xs=[],ys=[];
+  for(let i=0;i<=200;i++){const t=x-5+(10*i/200);let v=0;coeffs.forEach((c,k)=>v+=c*Math.pow(t,coeffs.length-1-k));xs.push(t);ys.push(v);}
+  drawLine(xs,ys,'Polynomial plot','x','p(x)');
+}
+
+function drawLine(xs,ys,title,xlabel,ylabel){
+  const c=document.getElementById('polyChart'),ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  const pad=45,w=c.width-pad-20,h=c.height-pad-25;
+  const ymin=Math.min(...ys),ymax=Math.max(...ys);
+  const X=x=>pad+(x-xs[0])/(xs[xs.length-1]-xs[0])*w;
+  const Y=y=>pad+h-((y-ymin)/(ymax-ymin||1))*h;
+  ctx.strokeStyle='#f0b429';ctx.beginPath();ctx.moveTo(pad,Y(0));ctx.lineTo(pad+w,Y(0));ctx.moveTo(X(0),pad);ctx.lineTo(X(0),pad+h);ctx.stroke();
+  ctx.strokeStyle='#f97316';ctx.lineWidth=4;ctx.beginPath();
+  xs.forEach((x,i)=>{i?ctx.lineTo(X(x),Y(ys[i])):ctx.moveTo(X(x),Y(ys[i]))});ctx.stroke();ctx.lineWidth=1;
+  ctx.fillStyle='#20323f';ctx.font='14px sans-serif';ctx.fillText(title,pad+10,pad+20);
+}
+
+function runFit(){
+  const x=parseNumbers(document.getElementById('fitX').value),y=parseNumbers(document.getElementById('fitY').value);
+  const degree=parseInt(document.getElementById('fitDegree').value);
+  if(x.length!==y.length||x.length<2){document.getElementById('fitOutput').textContent='Error: x and y must have the same number of values.';return;}
+  const n=x.length,p=degree+1;
+  let X=Array.from({length:n},()=>Array(p).fill(0));
+  x.forEach((v,i)=>{for(let k=0;k<p;k++)X[i][k]=Math.pow(v,k);});
+  let ATA=Array.from({length:p},()=>Array(p).fill(0)),ATy=Array(p).fill(0);
+  for(let i=0;i<n;i++)for(let j=0;j<p;j++){ATy[j]+=X[i][j]*y[i];for(let k=0;k<p;k++)ATA[j][k]+=X[i][j]*X[i][k];}
+  for(let c=0;c<p;c++){
+    let r=c;for(let i=c+1;i<p;i++)if(Math.abs(ATA[i][c])>Math.abs(ATA[r][c]))r=i;
+    [ATA[c],ATA[r]]=[ATA[r],ATA[c]];[ATy[c],ATy[r]]=[ATy[r],ATy[c]];
+    for(let i=c+1;i<p;i++){const f=ATA[i][c]/(ATA[c][c]||1);for(let j=c;j<p;j++)ATA[i][j]-=f*ATA[c][j];ATy[i]-=f*ATy[c];}
+  }
+  let coef=Array(p).fill(0);
+  for(let i=p-1;i>=0;i--){let s=ATy[i];for(let j=i+1;j<p;j++)s-=ATA[i][j]*coef[j];coef[i]=s/(ATA[i][i]||1);}
+  const eq=coef.map((c,k)=>c.toFixed(4)+'x^'+k).reverse().join(' + ').replace(/\+-/g,'- ');
+  document.getElementById('fitOutput').textContent='>> p = polyfit(x,y,'+degree+')\n\nFitted equation:\ny = '+eq+'\n\nData points used: '+n;
+  const xs=[],ys=[];
+  for(let i=0;i<=200;i++){const t=x[0]+(x[x.length-1]-x[0])*i/200;xs.push(t);ys.push(coef.reduce((s,c,k)=>s+c*Math.pow(t,k),0));}
+  drawFit(x,y,xs,ys,'Curve fitting: degree '+degree);
+}
+
+function drawFit(x,y,xs,ys,title){
+  const c=document.getElementById('fitChart'),ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  const pad=45,w=c.width-pad-20,h=c.height-pad-25;
+  const allY=y.concat(ys),ymin=Math.min(...allY),ymax=Math.max(...allY);
+  const xmin=Math.min(...x,xs[0]),xmax=Math.max(...x,xs[xs.length-1]);
+  const X=v=>pad+(v-xmin)/(xmax-xmin||1)*w,Y=v=>pad+h-((v-ymin)/(ymax-ymin||1))*h;
+  ctx.strokeStyle='#f0b429';ctx.beginPath();ctx.moveTo(pad,Y(0));ctx.lineTo(pad+w,Y(0));ctx.moveTo(X(0),pad);ctx.lineTo(X(0),pad+h);ctx.stroke();
+  ctx.strokeStyle='#0ea5e9';ctx.lineWidth=4;ctx.beginPath();xs.forEach((v,i)=>{i?ctx.lineTo(X(v),Y(ys[i])):ctx.moveTo(X(v),Y(ys[i]))});ctx.stroke();
+  ctx.fillStyle='#f97316';x.forEach((v,i)=>{ctx.beginPath();ctx.arc(X(v),Y(y[i]),6,0,7);ctx.fill();});
+  ctx.lineWidth=1;ctx.fillStyle='#20323f';ctx.font='14px sans-serif';ctx.fillText(title,pad+10,pad+20);
+}
+
+function runInterp(){
+  const x=parseNumbers(document.getElementById('intX').value),y=parseNumbers(document.getElementById('intY').value);
+  const t=parseFloat(document.getElementById('intTarget').value);
+  if(x.length!==y.length){document.getElementById('interpOutput').textContent='Error: x and y must have equal length.';return;}
+  let yi;
+  if(t<=x[0])yi=y[0];else if(t>=x[x.length-1])yi=y[y.length-1];
+  else{let i=0;while(t>x[i+1])i++;yi=y[i]+(y[i+1]-y[i])*(t-x[i])/(x[i+1]-x[i]);}
+  document.getElementById('interpOutput').textContent='>> yi = interp1(x,y,'+t+')\n\nans =\n'+yi.toFixed(4);
+  drawFit(x,y,x,y,'Linear interpolation through data points');
+}
+
+function runSim(){
+  const x=parseFloat(document.getElementById('simIn').value)||0;
+  const g=parseFloat(document.getElementById('simGain').value)||0;
+  const y=g*x;
+  document.getElementById('simOutput').textContent='>> Simulink model: y = Gain * Constant\n\nInput x = '+x+'\nGain = '+g+'\nOutput y = '+y.toFixed(2);
+  const xs=[],ys=[];
+  for(let i=0;i<=50;i++){const t=i;xs.push(t);ys.push(g*t);}
+  drawLine(xs,ys,'Simulink output: y = '+g+'x','Time / input index','Output y');
+}
+
+window.onload=function(){
+  runCalc();runCircle();runLogic();runGrade();runLoop();matrixOp('*');generateRandom();drawFunction();drawCharts();drawSurface();evaluatePoly();runFit();runInterp();runSim();
+};
+</script>
+</body>
+</html>
